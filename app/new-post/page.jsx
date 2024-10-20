@@ -1,18 +1,19 @@
-import { storePost } from '@/lib/posts';
+import { storePost } from '@/lib/actions';
 
 export default function NewPostPage() {
     async function createPost(formData) {
+        // Required to make this a server action.
         "use server";
+
+        // Field names defined by `name` vlaues from `input` fields.
         const title = formData.get('title');
         const image = formData.get('image');
         const content = formData.get('content');
 
-        storePost({
-            imageUrl: '',
-            title,
-            content,
-            userId: 1
-        })
+        // console.log('^^^ TITLE ^^^\n', title);
+        // console.log('^^^ CONTENT ^^^\n', content);
+        // console.log('^^^ IMAGE ^^^\n', image);
+        storePost({ imageUrl: '', title, content, userId: 1 });
     }
 
     return (
